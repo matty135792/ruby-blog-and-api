@@ -12,8 +12,19 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
 .page-content {
     padding: 40px;
+}
+
+.logo {
+    color: fuchsia;
+}
+
+.field_with_errors {
+    /* color: red;
+    text-emphasis: 2;
+    background-color: white; */
 }
