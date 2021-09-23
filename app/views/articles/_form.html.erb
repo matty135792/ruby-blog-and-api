@@ -37,6 +37,11 @@
       <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
     </div>
 
+    <div class="row" >
+      <%= form.label :topic %><br>
+      <%= form.select :topic_id, options_from_collection_for_select(Topic.all, 'id', 'title') %>
+    </div>
+
     <br>
 
     <div class="row" >

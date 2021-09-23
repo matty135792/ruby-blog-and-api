@@ -18,10 +18,30 @@
     <p><%= @article.body %></p>
   </div>
 
+  
   <div class="row" style="background-color: none">
     <h2>Comments</h2>
-    <%= render @article.comments %>
+    <div id="most_recent" class="">
+      <%= render @article.comments.most_recent %>
+    </div>
+    <div id="all_comments" class="visually-hidden">
+      <%= render @article.comments %>
+    </div>
   </div>
+
+  <button class="btn btn-primary" onclick="
+    
+    if(document.getElementById('most_recent').className =='visually-hidden') {
+      document.getElementById('most_recent').className=''
+      document.getElementById('all_comments').className ='visually-hidden'
+      this.textContent = 'Show more ...'
+    }
+    else {
+      document.getElementById('most_recent').className='visually-hidden'
+      document.getElementById('all_comments').className = ''
+      this.textContent = 'Show less ...'
+    }
+    ">Show more ...</button>
 
   <div class="row">
     <h2>Add a comment:</h2>

@@ -14,7 +14,7 @@
         <div class="ms-2 me-auto">
           <div class="fw-bold"><%= article.title %></div>
           <div><%= article.body.truncate(40) %></div>
-          
+          <div><%= @topics.find( article.topic_id ).title %></div>
         </div>
         <span><%= link_to "Go", article, class:"btn btn-primary" %></span>
       </li>
