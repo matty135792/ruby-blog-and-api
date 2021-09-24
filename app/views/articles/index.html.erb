@@ -12,14 +12,7 @@
 
   <ol class="list-group-flush list-group-numbered row">
     <% @articles.each do |article| %>
-      <li class="list-group-item d-flex justify-content-between align-items-start col-sm-6">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold"><%= article.title %></div>
-          <div><%= article.body.truncate(40) %></div>
-          
-        </div>
-        <span><%= link_to "Go", article, class:"btn btn-primary" %></span>
-      </li>
+      <%= render partial: "shared/article_list_item" , locals: {article: article}%>
     <% end %>
   </ol>
 </div>
