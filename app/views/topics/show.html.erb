@@ -12,7 +12,7 @@
       <li><%= link_to "Edit", edit_topic_path(@topic) %></li>
       <li><%= link_to "Delete", topic_path(@topic),
                       method: :delete,
-                      data: { confirm: "Are you sure?" } %></li>
+                      data: { confirm: ("Delete: " + @topic.title.truncate(10) + "?") } %></li>
       </ul>
     </div>
   </div>

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to article_path(@article), success: 'comment created'
     else
-      render :new, notice: "HELLO THERE"
+      render :new
     end
 
 

@@ -2,6 +2,8 @@
     <div class="ms-2 me-auto">
         <div class="fw-bold"><%= article.title %></div>
         <div><%= article.body.truncate(40) %></div>
+        <div><%= distance_of_time_in_words_to_now article.created_at %> ago</div>
+        
     </div>
     <span><%= link_to "Go", article, class:"btn btn-primary" %></span>
 </li>
