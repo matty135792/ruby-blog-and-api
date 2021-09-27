@@ -28,3 +28,11 @@
     text-emphasis: 2;
     background-color: white; */
 }
+
+body {
+    background-image: linear-gradient(to right, red, yellow);
+}
+
+.color {
+    background-color: none
+}
