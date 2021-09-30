@@ -23,9 +23,9 @@
 }
 
 .field_with_errors {
-    /* color: red;
+    color: blue;
     text-emphasis: 2;
-    background-color: white; */
+    background-color: white;
 }
 
 body {
