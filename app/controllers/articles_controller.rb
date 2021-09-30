@@ -16,10 +16,14 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
-    if @article.save
-      redirect_to @article
-    else
-      render :new
+    respond_to do |format|
+      if @article.save
+        format.html { redirect_to @article, notice: "Article was successfully created." }
+        format.json { render :show, status: :created, location: @article }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @article.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -40,11 +44,16 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-
-    redirect_to root_path
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Article was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
+  def set_article
+    @article = Article.find(params[:id])
+  end
   def article_params
     params.require(:article).permit(:title, :body, :status, :topic_id)
   end
