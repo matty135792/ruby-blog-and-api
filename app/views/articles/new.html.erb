@@ -1,4 +1,8 @@
 <h1>New Article</h1>
 <br>
 
-<%= render "form", article: @article %>
+<% if Current.user %>
+    <%= render "form", article: @article %>
+<% else %>
+    Please Login to create an article
+<% end %>

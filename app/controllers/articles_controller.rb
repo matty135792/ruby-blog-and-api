@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user_id = Current.user.id
 
     respond_to do |format|
       if @article.save
@@ -34,19 +35,28 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
 
-    if @article.update(article_params)
-      redirect_to @article
+    if @article.user_id == Current.user.id
+      if @article.update(article_params)
+        redirect_to @article
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to @article, alert: "Not Authorised"
     end
   end
 
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "Article was successfully destroyed." }
-      format.json { head :no_content }
+
+    if @article.user_id == Current.user.id
+      @article.destroy
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: "Article was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to @article, alert: "Not Authorised"
     end
   end
 

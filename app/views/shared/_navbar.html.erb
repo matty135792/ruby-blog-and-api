@@ -17,7 +17,17 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><%= link_to "Show All", users_path, :class =>"dropdown-item"%></li>
             <li><hr class="dropdown-divider"></li>
-            <li><%= link_to "New User", new_user_path, :class =>"dropdown-item" %></li>
+            
+            <% if Current.user %>
+              <li><%= link_to "Change Password", edit_password_path, :class =>"dropdown-item" %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to "Log Out", logout_path, method: :delete, :class =>"dropdown-item" %></li>
+            <% else %>
+              <li><%= link_to "Log In", sign_in_path, :class =>"dropdown-item" %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to "Sign Up", sign_up_path, :class =>"dropdown-item" %></li>
+            <% end %>
+
           </ul>
         </li>
         <li class="nav-item dropdown px-4">
