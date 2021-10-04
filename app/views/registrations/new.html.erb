@@ -1,18 +1,26 @@
 <h1>Sign Up</h1>
 <%= form_with model: @user, url: sign_up_path do |f| %>
     <p>
-    <%= f.label 'email' %><br>
-    <%= f.text_field :email %>
+        <%= f.label 'email' %><br>
+        <%= f.text_field :email %>
     </p>
     <p>
-    <%= f.label 'password' %><br>
-    <%= f.password_field :password %>
+        <%= f.label 'name:'%><br>
+        <%= f.text_field :name, id: 'name' %>
     </p>
     <p>
-    <%= f.label 'password_confirmation' %><br>
-    <%= f.password_field :password_confirmation %>
+        <%= f.label 'username:'%><br>
+        <%= f.text_field :login, id: 'login' %>
     </p>
     <p>
-    <%= f.submit 'Sign Up' %>
+        <%= f.label 'password' %><br>
+        <%= f.password_field :password %>
+    </p>
+    <p>
+        <%= f.label 'password_confirmation' %><br>
+        <%= f.password_field :password_confirmation %>
+    </p>
+    <p>
+        <%= f.submit 'Sign Up' %>
     </p>
 <% end %>
