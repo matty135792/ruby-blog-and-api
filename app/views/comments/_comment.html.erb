@@ -7,11 +7,15 @@
   <div class="col-6" style="background-color: none">
   </div>
 
-  <div class="col" style="background-color: none">
-    <p>
-      <%= link_to 'Delete Comment', [comment.article, comment],
-                  method: :delete,
-                  data: { confirm: ("Delete: " + comment.body.truncate(10) + "?")} %>
-    </p>
-  </div>
+  <% if Current.user %>
+    <% if Current.user.email == comment.commenter%>
+      <div class="col" style="background-color: none">
+        <p>
+          <%= link_to 'Delete Comment', [comment.article, comment],
+                      method: :delete,
+                      data: { confirm: ("Delete: " + comment.body.truncate(10) + "?")} %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
 </div>

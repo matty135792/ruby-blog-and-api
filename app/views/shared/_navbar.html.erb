@@ -40,7 +40,13 @@
             <li><%= link_to "New Topic", new_topic_path, :class =>"dropdown-item" %></li>
           </ul>
         </li>
+        <li class="nav-item px-4">
+          <% if Current.user %>
+            <p class="nav-link">Logged in as: <%= Current.user.email %></p>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+

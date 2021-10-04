@@ -1,22 +1,28 @@
-<div class="form-group">
-<%= form_with model: [ @article, local_assigns[:comment] || @article.comments.build ] do |form| %>
-  <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter,  class: "form-control"%>
+<% if Current.user %>
+  <div class="form-group">
+  <%= form_with model: [ @article, local_assigns[:comment] || @article.comments.build ] do |form| %>
+    <p>
 
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body ,  class: "form-control"%>
+      <%= form.hidden_field :commenter,  class: "form-control", value: Current.user.email %>
 
-  </p>
-  <p>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' ,  class: "form-control"%>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-  
+    </p>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body ,  class: "form-control"%>
+
+    </p>
+    <p>
+      <%= form.label :status %><br>
+      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' ,  class: "form-control"%>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+    
+  <% end %>
+  </div>
+
+<% else %>
+  <p>Please Login To Comment</p>
 <% end %>
-</div>
+
