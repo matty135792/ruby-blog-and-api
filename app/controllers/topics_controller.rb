@@ -23,14 +23,18 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
 
-    respond_to do |format|
-      if @topic.save
-        format.html { redirect_to @topic, notice: "Topic was successfully created." }
-        format.json { render :show, status: :created, location: @topic }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
+    if Current.user && Current.user.has_permission?('topic')
+      respond_to do |format|
+        if @topic.save
+          format.html { redirect_to @topic, notice: "Topic was successfully created." }
+          format.json { render :show, status: :created, location: @topic }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @topic.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to @topic, alert: "Not Authorised"
     end
   end
 

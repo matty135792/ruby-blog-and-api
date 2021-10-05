@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% if Current.user && Current.user.has_permission?('comment') %>
+<% if Current.user && Current.user.has_permission?('admin') %>
   <h1>admin</h1>
 <% end %>
 <h1>Users</h1>
