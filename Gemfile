@@ -29,7 +29,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'bootstrap', '~> 5.0.2'
-gem 'bootstrap-sass'
 gem 'popper_js', '~> 2.9', '>= 2.9.3'
 gem 'rack-cors'
 
