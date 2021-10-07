@@ -22,7 +22,7 @@
 </p>
 
 
-<% if Current.user && Current.user.has_permission?('admin') %>
+<% if current_user_is_admin %>
   <%= render 'users/form', user: @user %>
 <% end %>
 
