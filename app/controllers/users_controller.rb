@@ -38,14 +38,23 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+
+    if Current.user.has_permission?('admin')
+      if admin_changed?(user_params[:permission_ids])
+        redirect_to @user, notice: "Not Autherised for this"
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @user.update(user_params)
+            format.html { redirect_to @user, notice: "User was successfully updated." }
+            format.json { render :show, status: :ok, location: @user }
+          else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+          end
+        end
       end
+    else
+      redirect_to @user, notice: "Not Autherised for this"
     end
   end
 
@@ -58,14 +67,26 @@ class UsersController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
+    #Check if params will change admin permission from current value
+    def admin_changed?(permissions)
+      if permissions.include?("1") && !@user.has_permission?('admin')
+        true
+      elsif !permissions.include?("1") && @user.has_permission?('admin')
+        true
+      else
+        false
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :login)
+      params.require(:user).permit(:name, :email, :login, :permission_ids => [])
     end
 end

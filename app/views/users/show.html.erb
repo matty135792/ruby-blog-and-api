@@ -1,18 +1,31 @@
 
 <p>
-  <strong>Name:</strong>
+  <strong>Name: </strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>Email: </strong>
   <%= @user.email %>
 </p>
 
 <p>
-  <strong>Login:</strong>
+  <strong>Login: </strong>
   <%= @user.login %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+
+
+<p>
+  <strong>Permissions: </strong>
+  <%= @user.permissions.pluck(:title).join(', ') %>
+</p>
+
+
+<% if Current.user && Current.user.has_permission?('admin') %>
+  <%= render 'users/form', user: @user %>
+<% end %>
+
+
+
 <%= link_to 'Back', users_path %>
