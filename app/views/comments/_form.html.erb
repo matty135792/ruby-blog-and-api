@@ -1,4 +1,4 @@
-<% if current_user_can_comment %>
+<% if current_user_can_create('comment') %>
   <div class="form-group">
   <%= form_with model: [ @article, local_assigns[:comment] || @article.comments.build ] do |form| %>
     <p>
@@ -12,14 +12,11 @@
   <% end %>
   </div>
 
-<% else %>
-  <% if !user_logged_in %>
-    <p>Please Login To Comment</p>
-  <% elsif !current_user_can_comment %>
-    <p>Permission Denied</p>
-  <% else %>
-    <p>Something went wrong</p>
-  <% end %>
+
+<% elsif !user_logged_in %>
+  <p>Please Login To Comment</p>
+<% else%>
+  <p>Permission Denied</p>
 
 <% end %>
 

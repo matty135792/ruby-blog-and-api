@@ -8,7 +8,7 @@
   </div>
 
   <% if user_logged_in %>
-    <% if current_user_can_edit_comment(comment.user_id)%>
+    <% if current_user_can_delete(comment.user_id)%>
       <div class="col" style="background-color: none">
         <p>
           <%= link_to 'Delete Comment', [comment.article, comment],

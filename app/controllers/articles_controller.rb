@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
     if Current.user
       @article = Article.find(params[:id])
 
-      if @article.user_id == Current.user.id
+      if can_delete_article?
         @article.destroy
         respond_to do |format|
           format.html { redirect_to root_path, notice: "Article was successfully destroyed." }
@@ -76,7 +76,11 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :body, :status, :topic_id)
   end
 
-  def can_article?
+  def can_create_article?
     Current.user.has_permission?('article') || Current.user.has_permission?('admin')
+  end
+
+  def can_delete_article?
+    (@article.user_id == Current.user.id) || Current.user.has_permission?('admin')
   end
 end

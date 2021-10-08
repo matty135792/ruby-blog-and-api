@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     if Current.user
-      if can_comment?
+      if can_create_comment?
         @article = Article.find(params[:article_id])
         @user = Current.user
         # @comment = @article.comments.build(comment_params)
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
       @article = Article.find(params[:article_id])
       @comment = @article.comments.find(params[:id])
 
-      if(Current.user.id == @comment.user_id)
+      if can_delete_comment?
         @comment.destroy
         redirect_to article_path(@article)
       else
@@ -49,7 +49,11 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:body)
     end
 
-    def can_comment?
+    def can_create_comment?
       Current.user.has_permission?('comment') || Current.user.has_permission?('admin')
+    end
+  
+    def can_delete_comment?
+      (@comment.user_id == Current.user.id) || Current.user.has_permission?('admin')
     end
 end
