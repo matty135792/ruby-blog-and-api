@@ -8,12 +8,14 @@
     </div>
 
     <div class="col-3">
-      <ul>
-      <li><%= link_to "Edit", edit_topic_path(@topic) %></li>
-      <li><%= link_to "Delete", topic_path(@topic),
+      <% if current_user_can_edit(@topic.user_id) %>
+        <li><%= link_to "Edit", edit_topic_path(@topic) %></li>
+      <% end %>
+      <% if current_user_can_delete(@topic.user_id) %>
+        <li><%= link_to "Delete", topic_path(@topic),
                       method: :delete,
                       data: { confirm: ("Delete: " + @topic.title.truncate(10) + "?") } %></li>
-      </ul>
+      <% end %>
     </div>
   </div>
  

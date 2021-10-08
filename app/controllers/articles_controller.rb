@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
 
   def create
     if Current.user
-      if can_article?
+      if can_create_article?
         @article = Article.new(article_params)
         @article.user_id = Current.user.id
 

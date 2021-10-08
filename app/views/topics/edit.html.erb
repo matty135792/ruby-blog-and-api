@@ -1,6 +1,13 @@
 <h1>Editing Topic</h1>
 
-<%= render 'form', topic: @topic %>
+<% if current_user_can_edit(@topic.user_id) %>
+    <%= render 'form', topic: @topic %>
+<% elsif !user_logged_in %>
+    <p>Please Login to edit an article</p>
+<% else %>
+    <p>Permission Denied</p>
+<% end %>
+
 
 <%= link_to 'Show', @topic %> |
 <%= link_to 'Back', topics_path %>
