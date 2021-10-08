@@ -13,9 +13,8 @@
 
   <body>
     <%= render "/shared/navbar" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div class="page-content">
+    <%= render "/shared/bottom_navbar" %>
+    <div class="page-content m-2 main-body">
       <%= yield %>
     </div>
   </body>
