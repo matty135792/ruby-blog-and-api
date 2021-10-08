@@ -3,10 +3,13 @@ class CommentsController < ApplicationController
     if Current.user
       if can_comment?
         @article = Article.find(params[:article_id])
+        @user = Current.user
         # @comment = @article.comments.build(comment_params)
 
         @comment = Comment.new(comment_params)
         @comment.article = @article
+        @comment.user = @user
+
 
         if @comment.save
           redirect_to article_path(@article), success: 'comment created'
@@ -43,7 +46,7 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:commenter, :body, :status)
+      params.require(:comment).permit(:body)
     end
 
     def can_comment?

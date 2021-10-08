@@ -5,6 +5,8 @@ class RegistrationsController < ApplicationController
     end
     def create
         @user = User.new(user_params)
+        @user.permissions << Permission.find("2")
+        @user.permissions << Permission.find("3")
         if @user.save
             UserMailer.with(user: @user).welcome_email.deliver_later
             # stores saved user id in a session

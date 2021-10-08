@@ -2,18 +2,8 @@
   <div class="form-group">
   <%= form_with model: [ @article, local_assigns[:comment] || @article.comments.build ] do |form| %>
     <p>
-
-      <%= form.hidden_field :commenter,  class: "form-control", value: Current.user.email %>
-
-    </p>
-    <p>
       <%= form.label :body %><br>
       <%= form.text_area :body ,  class: "form-control"%>
-
-    </p>
-    <p>
-      <%= form.label :status %><br>
-      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' ,  class: "form-control"%>
     </p>
     <p>
       <%= form.submit %>
