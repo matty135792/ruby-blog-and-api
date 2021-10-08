@@ -7,7 +7,6 @@
     <br>
   </div>
  
-
   <ol class="list-group-flush list-group-numbered row">
     <% @recent_articles.each do |article| %>
       <%= render partial: "shared/article_list_item" , locals: {article: article}%>

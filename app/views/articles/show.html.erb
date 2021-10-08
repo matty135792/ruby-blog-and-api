@@ -4,19 +4,27 @@
       <h1><%= @article.title %></h1>
     </div>
 
+
     <div class="col-3">
       <ul>
-      <li><%= link_to "Edit", edit_article_path(@article) %></li>
-      <li><%= link_to "Delete", article_path(@article),
-                      method: :delete,
-                      data: { confirm: ("Delete: " + @article.title.truncate(10) + "?") } %></li>
+      <% if current_user_can_edit(@article.user_id) %>
+        <li><%= link_to "Edit", edit_article_path(@article) %></li>
+      <% end %>
+      <% if current_user_can_delete(@article.user_id) %>
+        <li><%= link_to "Delete", article_path(@article),
+                        method: :delete,
+                        data: { confirm: ("Delete: " + @article.title.truncate(10) + "?") } %></li>
+      <% end %>
       </ul>
     </div>
+
   </div>
 
   <% @topics = Topic.all%>
   <div>Topic: <%= @topics.find( @article.topic_id ).title %></div>
   
+  <% @user = User.find( @article.user_id ) %>
+  <div>User: <%= @user.email %></div>
 
   <div class="row fs-4">
     <p><%= @article.body %></p>

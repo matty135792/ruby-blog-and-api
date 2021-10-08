@@ -1,4 +1,10 @@
 <h1>Edit Article</h1>
 <br>
 
-<%= render "form", article: @article %>
+<% if current_user_can_edit(@article.user_id) %>
+    <%= render "form", article: @article %>
+<% elsif !user_logged_in %>
+    Please Login to edit an article
+<% else %>
+    Permission Denied
+<% end %>

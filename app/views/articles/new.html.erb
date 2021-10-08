@@ -1,4 +1,10 @@
 <h1>New Article</h1>
 <br>
 
-<%= render "form", article: @article %>
+<% if current_user_can_create('article') %>
+    <%= render "form", article: @article %>
+<% elsif !user_logged_in %>
+    Please Login to create an article
+<% else %>
+    Permission Denied
+<% end %>
