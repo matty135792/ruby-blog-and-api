@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
       @article = Article.find(params[:article_id])
       @comment = @article.comments.find(params[:id])
 
-      if(Current.user.email == @comment.commenter)
+      if(Current.user.id == @comment.user_id)
         @comment.destroy
         redirect_to article_path(@article)
       else
