@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Password Resets Controller
 class PasswordResetsController < ApplicationController
   def new; end
 

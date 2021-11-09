@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Topics Controller
 class TopicsController < ApplicationController
   before_action :set_topic, only: %i[show edit update destroy]
 
