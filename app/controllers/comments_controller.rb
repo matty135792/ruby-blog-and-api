@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   def create
     if Current.user
@@ -9,7 +11,6 @@ class CommentsController < ApplicationController
         @comment = Comment.new(comment_params)
         @comment.article = @article
         @comment.user = @user
-
 
         if @comment.save
           redirect_to article_path(@article), success: 'comment created'
@@ -33,7 +34,7 @@ class CommentsController < ApplicationController
         @comment.destroy
         redirect_to article_path(@article)
       else
-        redirect_to article_path(@article), alert: "Not Authorised to delete this"
+        redirect_to article_path(@article), alert: 'Not Authorised to delete this'
       end
     else
       redirect_to article_path(@article), success: 'Login to delete'
@@ -45,15 +46,16 @@ class CommentsController < ApplicationController
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:body)
-    end
 
-    def can_create_comment?
-      Current.user.has_permission?('comment') || Current.user.has_permission?('admin')
-    end
-  
-    def can_delete_comment?
-      (@comment.user_id == Current.user.id) || Current.user.has_permission?('admin')
-    end
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
+
+  def can_create_comment?
+    Current.user.has_permission?('comment') || Current.user.has_permission?('admin')
+  end
+
+  def can_delete_comment?
+    (@comment.user_id == Current.user.id) || Current.user.has_permission?('admin')
+  end
 end

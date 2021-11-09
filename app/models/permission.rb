@@ -1,6 +1,7 @@
-class Permission < ApplicationRecord
-    has_and_belongs_to_many :users
+# frozen_string_literal: true
 
-    validates :title, presence: true
-  end
-  
+class Permission < ApplicationRecord
+  has_and_belongs_to_many :users
+
+  validates :title, presence: true
+end

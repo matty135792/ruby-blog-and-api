@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :topics
   resources :users
-  root "home#index"
+  root 'home#index'
 
   resources :articles do
     resources :comments

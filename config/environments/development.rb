@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -74,19 +76,17 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  
   config.action_mailer.delivery_method = :smtp
-  host = 'example.com' #replace with your own url
+  host = 'example.com' # replace with your own url
   config.action_mailer.default_url_options = { host: host }
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :user_name            => "matty135792@gmail.com",
-    :password             => "gbhrgjggarvvabbq",
-    :authentication       => "plain",
-    :enable_starttls_auto => true
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: 'matty135792@gmail.com',
+    password: 'gbhrgjggarvvabbq',
+    authentication: 'plain',
+    enable_starttls_auto: true
   }
-
 end
