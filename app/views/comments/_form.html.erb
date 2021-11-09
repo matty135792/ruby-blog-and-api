@@ -1,0 +1,22 @@
+<% if current_user_can_create('comment') %>
+  <div class="form-group">
+  <%= form_with model: [ @article, local_assigns[:comment] || @article.comments.build ] do |form| %>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body ,  class: "form-control"%>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+    
+  <% end %>
+  </div>
+
+
+<% elsif !user_logged_in %>
+  <p>Please Login To Comment</p>
+<% else%>
+  <p>Permission Denied</p>
+
+<% end %>
+

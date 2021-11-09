@@ -1,0 +1,63 @@
+<div class="container-fluid color" >
+  <div class="row">
+    <div class="col-9">
+      <h1><%= @article.title %></h1>
+    </div>
+
+
+    <div class="col-3">
+      <ul>
+      <% if current_user_can_edit(@article.user_id) %>
+        <li><%= link_to "Edit", edit_article_path(@article) %></li>
+      <% end %>
+      <% if current_user_can_delete(@article.user_id) %>
+        <li><%= link_to "Delete", article_path(@article),
+                        method: :delete,
+                        data: { confirm: ("Delete: " + @article.title.truncate(10) + "?") } %></li>
+      <% end %>
+      </ul>
+    </div>
+
+  </div>
+
+  <% @topics = Topic.all%>
+  <div>Topic: <%= @topics.find( @article.topic_id ).title %></div>
+  
+  <% @user = User.find( @article.user_id ) %>
+  <div>User: <%= @user.email %></div>
+
+  <div class="row fs-4">
+    <p><%= @article.body %></p>
+  </div>
+
+  
+  <div class="row" style="background-color: none">
+    <h2>Comments</h2>
+    <div id="most_recent" class="">
+      <%= render @article.comments.most_recent %>
+    </div>
+    <div id="all_comments" class="visually-hidden">
+      <%= render @article.comments %>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" onclick="
+    
+    if(document.getElementById('most_recent').className =='visually-hidden') {
+      document.getElementById('most_recent').className=''
+      document.getElementById('all_comments').className ='visually-hidden'
+      this.textContent = 'Show more ...'
+    }
+    else {
+      document.getElementById('most_recent').className='visually-hidden'
+      document.getElementById('all_comments').className = ''
+      this.textContent = 'Show less ...'
+    }
+    ">Show more ...</button>
+
+  <div class="row">
+    <h2>Add a comment:</h2>
+    <%= render 'comments/form', comment: @comment %>
+  </div>  
+
+</div>

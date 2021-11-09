@@ -1,0 +1,19 @@
+
+<div class="container-fluid p-4 color" >
+  <div class="row">
+    <h1>Topics</h1>
+    <p></p>
+    <p></p>
+    
+    <p></p>
+  </div>
+ 
+
+  <ol class="list-group-flush list-group-numbered row">
+    <% @topics.each do |topic| %>
+      <%= render partial: "shared/topic_list_item" , locals: {topic: topic}%>
+    <% end %>
+  </ol>
+</div>
+
+

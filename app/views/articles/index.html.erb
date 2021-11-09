@@ -1,0 +1,20 @@
+
+<div class="container-fluid p-4 color" >
+  <div class="row">
+    <h1>Articles</h1>
+    <p>Our blog has <%= Article.public_count %> articles and counting!</p>
+    <p></p>
+    <p></p>
+    
+    <p></p>
+  </div>
+ 
+
+  <ol class="list-group-flush list-group-numbered row">
+    <% @articles.each do |article| %>
+      <%= render partial: "shared/article_list_item" , locals: {article: article}%>
+    <% end %>
+  </ol>
+</div>
+
+

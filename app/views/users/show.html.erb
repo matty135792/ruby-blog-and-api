@@ -1,0 +1,31 @@
+
+<p>
+  <strong>Name: </strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email: </strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Login: </strong>
+  <%= @user.login %>
+</p>
+
+
+
+<p>
+  <strong>Permissions: </strong>
+  <%= @user.permissions.pluck(:title).join(', ') %>
+</p>
+
+
+<% if current_user_is_admin %>
+  <%= render 'users/form', user: @user %>
+<% end %>
+
+
+
+<%= link_to 'Back', users_path %>

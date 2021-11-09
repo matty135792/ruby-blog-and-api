@@ -1,0 +1,11 @@
+<h1>New Topic</h1>
+
+<% if current_user_can_create('topic') %>
+    <%= render 'form', topic: @topic %>
+<% elsif !user_logged_in %>
+    <p>Please Login to edit an article</p>
+<% else %>
+    <p>Permission Denied</p>
+<% end %>
+
+<%= link_to 'Back', topics_path %>

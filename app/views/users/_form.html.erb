@@ -1,0 +1,27 @@
+
+<%= form_with( model: @user, remote: true) do |f| %>
+
+<div>
+  <%= f.collection_check_boxes :permission_ids, Permission.all, :id, :title, {}, { :onclick => "this.form.submit();"} do |b|%>
+    <% if b.object.title != 'admin'%>
+      <div class="row form-check form-switch">
+        <%= b.label(class: "check_box") do %>
+          <%= b.check_box(class: "check_box form-check-input") %>
+          <%= b.object.title %>
+        <% end %>
+      </div> 
+    
+    <% else %>
+      <div class="row form-check form-switch d-none">
+        <%= b.label(class: "check_box") do %>
+          <%= b.check_box(class: "check_box form-check-input") %>
+          <%= b.object.title %>
+        <% end %>
+      </div> 
+    <% end %>
+  <% end %>
+</div>
+
+
+<% end %>
+

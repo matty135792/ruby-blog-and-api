@@ -1,0 +1,17 @@
+<div class="container-fluid p-4 color">
+  <div class="row">
+    <h1>Home</h1>
+    <p>Most Recent Articles</p>
+    <br>
+    <br>
+    <br>
+  </div>
+ 
+  <ol class="list-group-flush list-group-numbered row">
+    <% @recent_articles.each do |article| %>
+      <%= render partial: "shared/article_list_item" , locals: {article: article}%>
+    <% end %>
+  </ol>
+</div>
+
+
