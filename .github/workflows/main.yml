@@ -34,6 +34,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run Rubocop
         run: | 
+          bundle install
           rubocop
 
       # Runs a set of commands using the runners shell
