@@ -1,3 +1,3 @@
 # README
 
-Simple Blog Website built using rails
+Simple Blog Website built using rails and bootstrap

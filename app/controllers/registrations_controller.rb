@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# Registrations Controller
 class RegistrationsController < ApplicationController
   # instantiates new user
   def new

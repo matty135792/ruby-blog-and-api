@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
+# Topics Controller
 class TopicsController < ApplicationController
-  before_action :set_topic, only: %i[show edit update destroy]
+  before_action :set_topic, only: %i(show edit update destroy)
 
   # GET /topics or /topics.json
   def index
@@ -9,7 +8,8 @@ class TopicsController < ApplicationController
   end
 
   # GET /topics/1 or /topics/1.json
-  def show; end
+  def show
+  end
 
   # GET /topics/new
   def new
@@ -17,7 +17,8 @@ class TopicsController < ApplicationController
   end
 
   # GET /topics/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /topics or /topics.json
   def create
