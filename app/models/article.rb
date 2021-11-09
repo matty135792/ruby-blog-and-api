@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Article < ApplicationRecord
   include Visible
   scope :most_recent, -> { order(created_at: :desc).limit(5) }

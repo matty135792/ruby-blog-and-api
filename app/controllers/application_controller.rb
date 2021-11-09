@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Application Controller
 class ApplicationController < ActionController::Base
   before_action :set_current_user

@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 # Users Controller
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i(show edit update destroy)
 
   # GET /users or /users.json
   def index
@@ -10,7 +8,8 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1 or /users/1.json
-  def show; end
+  def show
+  end
 
   # GET /users/new
   def new
@@ -18,7 +17,8 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /users or /users.json
   def create
@@ -78,10 +78,8 @@ class UsersController < ApplicationController
   def admin_changed?(permissions)
     if permissions.include?('1') && !@user.has_permission?('admin')
       true
-    elsif !permissions.include?('1') && @user.has_permission?('admin')
-      true
     else
-      false
+      !permissions.include?('1') && @user.has_permission?('admin')
     end
   end
 
