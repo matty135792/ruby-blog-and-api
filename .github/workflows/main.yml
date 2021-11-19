@@ -67,4 +67,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           java --version
+          pwd
           echo test, and deploy your project.
